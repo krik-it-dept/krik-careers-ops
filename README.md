@@ -11,7 +11,7 @@ Static job description pages hosted on GitHub Pages.
 
 | ID | Role | File |
 |---|---|---|
-| `KH-OPS-001` | Operations Intern · mini BA | [index.html](./index.html) |
+| `KH-OPS-001` | Operations Assistant Intern | [index.html](./index.html) |
 | `KH-BRAND-002` | Brand & Content Intern | [content-intern.html](./content-intern.html) |
 
 ## Stack
