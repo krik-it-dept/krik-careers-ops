@@ -3,7 +3,7 @@
 Static job description pages hosted on GitHub Pages.
 
 **Live:** `https://krik-it-dept.github.io/krik-careers-ops/`
-**Contact:** HR@krik.vn
+**Contact:** tuyendung@krik.vn
 
 ---
 

@@ -535,6 +535,23 @@
     line-height:1.1;
   }
   .logistic .value em{font-style:italic;color:var(--accent)}
+  .logistic .map-link{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:6px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:border-color .25s ease;
+    width:fit-content;
+  }
+  .logistic .map-link:hover{border-bottom-color:var(--accent)}
+  .logistic .map-link::after{content:"↗"}
 
   /* ── APPLY CTA ─────────────────────────── */
   .apply{
@@ -655,9 +672,9 @@
 
     <div class="hero-grid">
       <p class="hero-lede reveal d3">
-        Phòng CNTT đang vận hành các hệ thống nội bộ cho cả KRIK Home — Lark, 1Office, phần mềm phòng ban &amp; cửa hàng.
+        Phòng CNTT đang vận hành Lark, 1Office &amp; phần mềm nội bộ cho cả hệ thống KRIK.
         Cần một người <em>nhanh, chủ động, thực chiến</em> — không phải "intern ngồi nhìn",
-        mà là người trực tiếp xử lý, triển khai, và làm cho hệ thống chạy mỗi ngày.
+        mà là người trực tiếp xử lý &amp; triển khai mỗi ngày.
       </p>
       <aside class="hero-side reveal d4">
         <span class="label">Tóm tắt vai trò</span>
@@ -728,7 +745,6 @@
           <li>Cấu hình, phân quyền, quản lý user trên Lark / 1Office</li>
           <li>Hỗ trợ vận hành các phần mềm nội bộ phòng ban</li>
           <li>Phát hiện sai lệch sớm, xử lý trước khi user kêu</li>
-          <li>Giữ system "sạch": không rác, không lệch, không mâu thuẫn</li>
         </ul>
       </div>
     </div>
@@ -740,8 +756,7 @@
         <ul>
           <li>Hỗ trợ triển khai tới HR, Sales, Store…</li>
           <li>Onboard user mới, hướng dẫn sử dụng cơ bản</li>
-          <li>Phối hợp với mentor để chốt flow trước khi go-live</li>
-          <li>Đảm bảo từng phòng ban đang dùng đúng cách</li>
+          <li>Phối hợp với mentor chốt flow trước khi go-live</li>
         </ul>
       </div>
     </div>
@@ -753,8 +768,7 @@
         <ul>
           <li>Hướng dẫn user, giải đáp quy trình vận hành hằng ngày</li>
           <li>Xử lý case sai data, sai quyền, lỗi đăng nhập</li>
-          <li>Phối hợp cùng mentor xử lý issue &amp; tối ưu hệ thống</li>
-          <li>Hỗ trợ làm tài liệu — SOP, guideline ngắn cho user</li>
+          <li>Phối hợp mentor xử lý issue &amp; tối ưu hệ thống</li>
         </ul>
       </div>
     </div>
@@ -767,7 +781,6 @@
           <li>Take note nội dung họp, không để sót việc</li>
           <li>Theo dõi &amp; nhắc đầu mục triển khai theo deadline</li>
           <li>Báo cáo tiến độ ngắn gọn theo tuần</li>
-          <li>Đảm bảo các bên đang nhìn cùng một bảng việc</li>
         </ul>
       </div>
     </div>
@@ -901,7 +914,8 @@
       </div>
       <div class="logistic">
         <span class="label">Địa điểm</span>
-        <span class="value">Văn phòng <em>+</em> remote khi cần</span>
+        <span class="value">82 Dịch Vọng Hậu, <em>Hà Nội</em></span>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=82+D%E1%BB%8Bch+V%E1%BB%8Dng+H%E1%BA%ADu%2C+H%C3%A0+N%E1%BB%99i" target="_blank" rel="noopener">Xem bản đồ</a>
       </div>
       <div class="logistic">
         <span class="label">Thời lượng</span>
@@ -915,17 +929,17 @@
     <div class="sec-kicker">[ Cách ứng tuyển ]</div>
     <h2>Sẵn sàng <em>build cùng</em><br>chúng tôi?</h2>
     <p>
-      Gửi CV (kèm Sheet sample / SOP / project bất kỳ bạn muốn khoe — nội bộ KRIK càng tốt) qua email bên dưới,
-      tiêu đề: <strong>[KH-OPS-001] Họ tên — TTS Trợ lý Vận hành Hệ thống</strong>.
+      Gửi CV qua email, tiêu đề: <strong>[KH-OPS-001] Họ tên — TTS Trợ lý Vận hành Hệ thống</strong>.
+      Có Sheet / SOP / project muốn khoe thì gửi kèm — nội bộ KRIK càng tốt.
     </p>
-    <a href="mailto:HR@krik.vn?subject=%5BKH-OPS-001%5D%20TTS%20Tro%20ly%20Van%20hanh%20He%20thong" class="btn">HR@krik.vn</a>
+    <a href="mailto:tuyendung@krik.vn?subject=%5BKH-OPS-001%5D%20TTS%20Tro%20ly%20Van%20hanh%20He%20thong" class="btn">tuyendung@krik.vn</a>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <span>© KRIK Home · 2026</span>
     <span>Job ID — KH-OPS-001 / v1.0</span>
-    <span><a href="mailto:HR@krik.vn" style="color:inherit;text-decoration:none">Liên hệ tuyển dụng ↗</a></span>
+    <span><a href="mailto:tuyendung@krik.vn" style="color:inherit;text-decoration:none">Liên hệ tuyển dụng ↗</a></span>
   </footer>
 
 </div>
