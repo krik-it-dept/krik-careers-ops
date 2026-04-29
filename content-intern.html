@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Brand & Content Intern — KRIK Home</title>
+<meta name="description" content="KRIK Home đang tìm Thực tập sinh Brand & Content — viết, kể chuyện, dựng tone, làm cho thương hiệu sống." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F2EBDD;
+    --paper-2:#EAE1CD;
+    --ink:#16110A;
+    --ink-soft:#3B2F22;
+    --muted:#8A7A62;
+    --line:#C9BCA0;
+    --accent:#B43A1F;
+    --accent-2:#234738;
+    --highlight:#E8D9B5;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Manrope', system-ui, sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  ::selection{background:var(--accent);color:var(--paper)}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+    position:relative;
+  }
+
+  /* ── TOP BAR ───────────────────────────── */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:28px 0;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:20px;
+    letter-spacing:-.01em;
+    text-transform:none;
+  }
+  .brand span{color:var(--accent)}
+  .topbar-right{display:flex;gap:24px;color:var(--muted)}
+  .live{color:var(--accent-2)}
+  .live::before{
+    content:"";
+    display:inline-block;
+    width:7px;height:7px;border-radius:50%;
+    background:var(--accent-2);
+    margin-right:8px;
+    transform:translateY(-1px);
+    animation:pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;transform:translateY(-1px) scale(1)}
+    50%{opacity:.4;transform:translateY(-1px) scale(.85)}
+  }
+
+  /* ── HERO ──────────────────────────────── */
+  .hero{
+    padding:120px 0 80px;
+    position:relative;
+  }
+
+  .hero-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 14px;
+    border:1px solid var(--ink);
+    border-radius:99px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin-bottom:40px;
+  }
+  .hero-tag::before{
+    content:"";
+    width:6px;height:6px;border-radius:50%;
+    background:var(--accent);
+  }
+
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-size:clamp(64px, 13vw, 184px);
+    line-height:.88;
+    letter-spacing:-.045em;
+    margin-bottom:48px;
+    font-variation-settings:"opsz" 144, "SOFT" 30;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--accent);
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+
+  .hero-bottom{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:80px;
+    align-items:end;
+    padding-top:48px;
+    border-top:1px solid var(--ink);
+  }
+  .hero-lede{
+    font-family:'Fraunces', serif;
+    font-size:clamp(22px, 2.4vw, 30px);
+    line-height:1.4;
+    font-weight:400;
+    color:var(--ink-soft);
+    max-width:580px;
+    font-variation-settings:"opsz" 60;
+  }
+  .hero-lede em{color:var(--accent);font-style:italic}
+
+  .hero-meta{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:.04em;
+  }
+  .hero-meta .row{
+    display:flex;
+    justify-content:space-between;
+    padding-bottom:10px;
+    border-bottom:1px dashed var(--line);
+  }
+  .hero-meta .row:last-child{border:none}
+  .hero-meta .k{color:var(--muted);text-transform:uppercase}
+  .hero-meta .v{color:var(--ink);font-weight:500}
+
+  .cta-row{
+    display:flex;
+    gap:14px;
+    margin-top:64px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:18px 32px;
+    background:var(--ink);
+    color:var(--paper);
+    text-decoration:none;
+    font-family:'Manrope', sans-serif;
+    font-weight:500;
+    font-size:15px;
+    border:1px solid var(--ink);
+    border-radius:2px;
+    transition:all .25s ease;
+  }
+  .btn::after{content:"↗";transition:transform .3s ease}
+  .btn:hover{background:var(--accent);border-color:var(--accent)}
+  .btn:hover::after{transform:translate(3px,-3px)}
+  .btn-ghost{background:transparent;color:var(--ink)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+
+  /* ── FOCAL MOMENT (the standout) ──────── */
+  .focal{
+    padding:140px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .focal-stack{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:64px;
+    align-items:center;
+  }
+  .focal-num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(180px, 26vw, 380px);
+    line-height:.85;
+    color:var(--accent);
+    letter-spacing:-.06em;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+    position:relative;
+  }
+  .focal-num sup{
+    font-size:.18em;
+    color:var(--ink);
+    font-style:normal;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:400;
+    vertical-align:super;
+    margin-left:.05em;
+    letter-spacing:.04em;
+  }
+  .focal-text{
+    max-width:480px;
+  }
+  .focal-text .kicker{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--accent-2);
+    margin-bottom:20px;
+    display:block;
+  }
+  .focal-text h2{
+    font-family:'Fraunces', serif;
+    font-size:clamp(32px, 3.6vw, 48px);
+    font-weight:400;
+    line-height:1.1;
+    letter-spacing:-.02em;
+    margin-bottom:20px;
+  }
+  .focal-text h2 em{font-style:italic;color:var(--accent)}
+  .focal-text p{
+    font-size:16px;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+
+  /* ── SECTION SHELL (slim) ──────────────── */
+  section.standard{padding:120px 0}
+  .sec-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:40px;
+    margin-bottom:72px;
+    flex-wrap:wrap;
+  }
+  .sec-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:.06em;
+    color:var(--muted);
+    text-transform:uppercase;
+  }
+  .sec-title{
+    font-family:'Fraunces', serif;
+    font-size:clamp(40px, 6vw, 72px);
+    font-weight:400;
+    line-height:1.02;
+    letter-spacing:-.025em;
+    font-variation-settings:"opsz" 100, "SOFT" 50;
+    flex:1 1 600px;
+  }
+  .sec-title em{font-style:italic;color:var(--accent);font-weight:400}
+
+  /* ── DUTIES (single column, generous) ──── */
+  .duties{
+    display:flex;
+    flex-direction:column;
+  }
+  .duty{
+    display:grid;
+    grid-template-columns:80px 1fr 2fr;
+    gap:40px;
+    padding:40px 0;
+    border-top:1px solid var(--line);
+    align-items:start;
+    transition:padding-left .3s ease;
+  }
+  .duty:hover{padding-left:8px}
+  .duty:last-child{border-bottom:1px solid var(--line)}
+  .duty-id{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--accent);
+    padding-top:8px;
+  }
+  .duty h3{
+    font-family:'Fraunces', serif;
+    font-size:clamp(22px, 2.2vw, 28px);
+    font-weight:400;
+    line-height:1.15;
+    letter-spacing:-.015em;
+  }
+  .duty p{
+    font-size:15.5px;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+
+  /* ── REQUIREMENTS (modern split) ───────── */
+  .req-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+  }
+  .req-col{
+    padding:40px;
+    border:1px solid var(--ink);
+    border-radius:4px;
+  }
+  .req-col.must{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .req-col.must .req-label{color:var(--highlight)}
+  .req-col.must li{color:var(--paper)}
+  .req-col.must li::before{background:var(--highlight)}
+  .req-col.must .req-num{color:var(--highlight)}
+  .req-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent-2);
+    display:block;
+    margin-bottom:8px;
+  }
+  .req-col h3{
+    font-family:'Fraunces', serif;
+    font-size:32px;
+    font-weight:400;
+    margin-bottom:32px;
+    letter-spacing:-.02em;
+  }
+  .req-col h3 em{font-style:italic;color:var(--accent)}
+  .req-col.must h3 em{color:var(--highlight)}
+  .req-col ul{list-style:none;display:flex;flex-direction:column;gap:16px}
+  .req-col li{
+    display:grid;
+    grid-template-columns:32px 1fr;
+    gap:8px;
+    font-size:15px;
+    line-height:1.55;
+    color:var(--ink-soft);
+  }
+  .req-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--accent);
+    padding-top:2px;
+  }
+
+  /* ── LOGISTICS + APPLY (combined) ──────── */
+  .close{
+    background:var(--ink);
+    color:var(--paper);
+    margin:0 -100vw;
+    padding:120px 100vw 100px;
+  }
+  .close-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:80px;
+    align-items:end;
+  }
+  .close h2{
+    font-family:'Fraunces', serif;
+    font-size:clamp(48px, 8vw, 110px);
+    font-weight:300;
+    line-height:.95;
+    letter-spacing:-.04em;
+    font-variation-settings:"opsz" 144, "SOFT" 50;
+  }
+  .close h2 em{
+    font-style:italic;
+    color:var(--highlight);
+    font-weight:400;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .close .kicker{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--highlight);
+    margin-bottom:20px;
+    display:block;
+  }
+  .close-meta{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    padding-bottom:8px;
+  }
+  .close-meta .row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(232,217,181,.25);
+    gap:16px;
+  }
+  .close-meta .row:last-child{border:none;padding:0}
+  .close-meta .k{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:rgba(232,217,181,.7);
+  }
+  .close-meta .v{
+    font-family:'Fraunces', serif;
+    font-size:18px;
+    color:var(--paper);
+  }
+  .close-meta .v em{font-style:italic;color:var(--highlight)}
+
+  .close-cta{
+    margin-top:64px;
+    padding-top:48px;
+    border-top:1px solid rgba(232,217,181,.25);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:32px;
+    flex-wrap:wrap;
+  }
+  .close-cta p{
+    max-width:520px;
+    font-size:15px;
+    color:rgba(242,235,221,.78);
+    line-height:1.65;
+  }
+  .close-cta p strong{color:var(--paper);font-weight:500}
+  .close .btn{
+    background:var(--paper);
+    color:var(--ink);
+    border-color:var(--paper);
+    padding:22px 40px;
+    font-size:16px;
+  }
+  .close .btn:hover{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+
+  /* ── FOOTER ────────────────────────────── */
+  footer{
+    border-top:1px solid var(--line);
+    padding:32px 0;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  footer a{color:inherit;text-decoration:none}
+  footer a:hover{color:var(--accent)}
+
+  /* ── ENTRANCE ANIMATIONS ───────────────── */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    animation:reveal .9s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .reveal.d1{animation-delay:.05s}
+  .reveal.d2{animation-delay:.18s}
+  .reveal.d3{animation-delay:.32s}
+  .reveal.d4{animation-delay:.46s}
+  @keyframes reveal{to{opacity:1;transform:translateY(0)}}
+
+  /* ── RESPONSIVE ────────────────────────── */
+  @media (max-width:900px){
+    .wrap{padding:0 24px}
+    .hero{padding:64px 0 56px}
+    .hero-bottom{grid-template-columns:1fr;gap:40px;padding-top:32px}
+    .focal{padding:80px 0}
+    .focal-stack{grid-template-columns:1fr;gap:32px}
+    .focal-num{font-size:clamp(140px, 40vw, 220px)}
+    section.standard{padding:80px 0}
+    .sec-head{margin-bottom:48px}
+    .duty{grid-template-columns:1fr;gap:8px;padding:32px 0}
+    .duty-id{padding:0}
+    .req-grid{grid-template-columns:1fr;gap:20px}
+    .close{padding:80px 100vw 64px}
+    .close-grid{grid-template-columns:1fr;gap:48px;align-items:start}
+    .close-cta{flex-direction:column;align-items:flex-start}
+  }
+  @media (max-width:560px){
+    .topbar-right{display:none}
+    .req-col{padding:32px 24px}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- TOP BAR -->
+  <header class="topbar reveal">
+    <div class="brand">krik<span>.</span>home</div>
+    <div class="topbar-right">
+      <span>Hà Nội · 2026</span>
+      <span class="live">Đang tuyển</span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-tag reveal d1">KH-BRAND-002 · Internship</span>
+
+    <h1 class="reveal d2">
+      Brand &amp;<br>
+      <em>Content</em> Intern.
+    </h1>
+
+    <div class="hero-bottom">
+      <p class="hero-lede reveal d3">
+        Một thương hiệu sống được không phải nhờ logo đẹp — mà nhờ giọng nói đúng.
+        Bọn mình cần một người <em>viết được, kể được</em>,
+        biến hệ thống và quy trình của KRIK Home thành câu chuyện người ta muốn đọc.
+      </p>
+      <div class="hero-meta reveal d4">
+        <div class="row"><span class="k">Phòng ban</span><span class="v">Brand / Marketing</span></div>
+        <div class="row"><span class="k">Hình thức</span><span class="v">Part-time</span></div>
+        <div class="row"><span class="k">Thời lượng</span><span class="v">3–6 tháng</span></div>
+        <div class="row"><span class="k">Cập nhật</span><span class="v">04 / 2026</span></div>
+      </div>
+    </div>
+
+    <div class="cta-row reveal d4">
+      <a href="#apply" class="btn">Ứng tuyển ngay</a>
+      <a href="#duties" class="btn btn-ghost">Xem chi tiết</a>
+    </div>
+  </section>
+
+</div>
+
+<!-- ── FOCAL MOMENT ── -->
+<section class="focal">
+  <div class="wrap">
+    <div class="focal-stack">
+      <div class="focal-num">3<sup>vai trò</sup></div>
+      <div class="focal-text">
+        <span class="kicker">[ Một vị trí — ba lớp ]</span>
+        <h2>Người <em>viết</em>, người <em>nghĩ</em>,<br>và người <em>giữ tone</em>.</h2>
+        <p>
+          Bạn không chỉ viết caption. Bạn nghĩ ra <em>vì sao viết</em>,
+          giữ cho mọi câu chữ — từ post Facebook đến email nội bộ —
+          đều cùng một giọng. Đơn giản. Có gu. Không sến.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- ── DUTIES ── -->
+  <section id="duties" class="standard">
+    <div class="sec-head">
+      <span class="sec-num">01 — Công việc</span>
+      <h2 class="sec-title">Bạn sẽ <em>làm gì</em><br>mỗi tuần.</h2>
+    </div>
+
+    <div class="duties">
+      <div class="duty">
+        <span class="duty-id">→ 01</span>
+        <h3>Viết content<br>đa kênh.</h3>
+        <p>Caption Facebook / Instagram, bài blog ngắn, email nội bộ, mô tả sản phẩm. Khoảng 4–6 đầu việc viết mỗi tuần — đủ để bạn luyện cơ, không đủ để bạn ngán.</p>
+      </div>
+      <div class="duty">
+        <span class="duty-id">→ 02</span>
+        <h3>Lên kế hoạch<br>nội dung.</h3>
+        <p>Phối hợp với team Marketing để dựng content calendar theo tháng. Đề xuất chủ đề, tracking hiệu quả, học cách suy nghĩ theo "chuỗi" thay vì từng post lẻ.</p>
+      </div>
+      <div class="duty">
+        <span class="duty-id">→ 03</span>
+        <h3>Giữ tone<br>thương hiệu.</h3>
+        <p>Hỗ trợ chuẩn hoá voice &amp; style guide. Mỗi câu chữ ra ngoài đều phải nghe giống KRIK — không lẫn vào hàng nghìn brand đang viết na ná nhau.</p>
+      </div>
+      <div class="duty">
+        <span class="duty-id">→ 04</span>
+        <h3>Quan sát<br>&amp; đo lường.</h3>
+        <p>Đọc dữ liệu insights cơ bản — bài nào chạy tốt, bài nào flop, vì sao. Báo cáo ngắn cuối tuần. Ý tưởng tốt là ý tưởng có dữ liệu đứng sau.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REQUIREMENTS ── -->
+  <section class="standard">
+    <div class="sec-head">
+      <span class="sec-num">02 — Yêu cầu</span>
+      <h2 class="sec-title">Người chúng tôi <em>đang tìm.</em></h2>
+    </div>
+
+    <div class="req-grid">
+      <div class="req-col must">
+        <span class="req-label">[ Must-have ]</span>
+        <h3>Bắt buộc <em>phải có.</em></h3>
+        <ul>
+          <li><span class="req-num">01</span><span>Sinh viên năm 2–4 hoặc mới tốt nghiệp ngành Marketing, Báo chí, Truyền thông, Ngôn ngữ…</span></li>
+          <li><span class="req-num">02</span><span>Viết tiếng Việt mượt — câu sạch, không sến, không lệ thuộc template</span></li>
+          <li><span class="req-num">03</span><span>Có gu thẩm mỹ — biết phân biệt cái đẹp và cái "rập khuôn cho có"</span></li>
+          <li><span class="req-num">04</span><span>Cẩn thận với câu chữ — sai chính tả là một dấu hiệu rất xấu</span></li>
+        </ul>
+      </div>
+
+      <div class="req-col">
+        <span class="req-label">[ Nice-to-have ]</span>
+        <h3>Có thì <em>tuyệt vời.</em></h3>
+        <ul>
+          <li><span class="req-num">05</span><span>Có blog / Substack / Threads / portfolio bài viết riêng</span></li>
+          <li><span class="req-num">06</span><span>Biết cơ bản về SEO, copywriting, hoặc storytelling cho brand</span></li>
+          <li><span class="req-num">07</span><span>Quen Notion, Figma, hoặc CapCut/Canva để hỗ trợ visual nhẹ</span></li>
+          <li><span class="req-num">08</span><span>Quan tâm tới mảng nhà ở, nội thất, lifestyle — biết thì đỡ phải dạy lại</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ── CLOSE / APPLY (full bleed) ── -->
+<section id="apply" class="close">
+  <div class="wrap">
+    <div class="close-grid">
+      <div>
+        <span class="kicker">[ Sẵn sàng ứng tuyển ]</span>
+        <h2>Viết cho<br>chúng tôi <em>một câu.</em></h2>
+      </div>
+      <div class="close-meta">
+        <div class="row"><span class="k">Địa điểm</span><span class="v">Văn phòng <em>+</em> remote</span></div>
+        <div class="row"><span class="k">Lương</span><span class="v">Thoả thuận theo năng lực</span></div>
+        <div class="row"><span class="k">Bắt đầu</span><span class="v">Ngay khi sẵn sàng</span></div>
+        <div class="row"><span class="k">Deadline</span><span class="v"><em>Mở</em> đến khi tìm được</span></div>
+      </div>
+    </div>
+
+    <div class="close-cta">
+      <p>
+        Gửi CV kèm <strong>3 mẫu viết bất kỳ</strong> bạn từng làm —
+        có thể là caption, blog, thư xin việc cũ, hay note bạn viết cho chính mình.
+        Chúng tôi đọc cả ba.
+      </p>
+      <a href="mailto:HR@krik.vn?subject=%5BKH-BRAND-002%5D%20Brand%20%26%20Content%20Intern" class="btn">HR@krik.vn</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>© KRIK Home · 2026</span>
+    <span>Job ID — KH-BRAND-002 / v1.0</span>
+    <span><a href="mailto:HR@krik.vn">Liên hệ tuyển dụng ↗</a></span>
+  </footer>
+</div>
+
+</body>
+</html>

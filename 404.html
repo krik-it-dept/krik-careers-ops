@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — KRIK Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400&family=Manrope:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#F2EBDD;
+    color:#16110A;
+    font-family:'Manrope',system-ui,sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:32px;
+    text-align:center;
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:radial-gradient(circle at 1px 1px,rgba(22,17,10,.08) 1px,transparent 0);
+    background-size:3px 3px;opacity:.35;pointer-events:none;mix-blend-mode:multiply;
+  }
+  .wrap{position:relative;z-index:2;max-width:560px}
+  .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    color:#8A7A62;margin-bottom:24px;
+  }
+  h1{
+    font-family:'Fraunces',serif;
+    font-size:clamp(96px,20vw,200px);
+    font-weight:300;line-height:.9;letter-spacing:-.04em;
+    margin-bottom:24px;
+    font-variation-settings:"opsz" 144,"SOFT" 50;
+  }
+  h1 em{font-style:italic;color:#B43A1F;font-weight:400}
+  p{font-size:17px;color:#3B2F22;line-height:1.6;margin-bottom:32px;font-family:'Fraunces',serif}
+  a{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 28px;background:#16110A;color:#F2EBDD;
+    text-decoration:none;font-weight:500;font-size:15px;
+    transition:background .25s ease;
+  }
+  a:hover{background:#B43A1F}
+  a::after{content:"↗"}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="label">[ Error · 404 ]</div>
+  <h1>Không<br><em>tìm thấy.</em></h1>
+  <p>Trang này có thể đã bị di chuyển hoặc chưa từng tồn tại. Quay về JD chính nhé.</p>
+  <a href="/">Về trang tuyển dụng</a>
+</div>
+</body>
+</html>

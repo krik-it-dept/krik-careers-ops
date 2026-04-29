@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Operations Intern — KRIK Home</title>
+<meta name="description" content="KRIK Home đang tìm Thực tập sinh Vận hành & Triển khai Phần mềm — vai trò mini BA + Ops + Data Assistant." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F2EBDD;
+    --paper-2:#EAE1CD;
+    --ink:#16110A;
+    --ink-soft:#3B2F22;
+    --muted:#8A7A62;
+    --line:#C9BCA0;
+    --accent:#B43A1F;       /* terracotta */
+    --accent-2:#234738;     /* deep moss */
+    --highlight:#E8D9B5;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Manrope', system-ui, sans-serif;
+    font-weight:400;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+
+  /* paper grain */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(22,17,10,0.08) 1px, transparent 0);
+    background-size:3px 3px;
+    opacity:.35;
+    pointer-events:none;
+    z-index:1;
+    mix-blend-mode:multiply;
+  }
+
+  ::selection{background:var(--accent);color:var(--paper)}
+
+  .wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 32px;
+    position:relative;
+    z-index:2;
+  }
+
+  /* ── TOP BAR ───────────────────────────── */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:24px 0;
+    border-bottom:1px solid var(--line);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:20px;
+    letter-spacing:-.01em;
+    text-transform:none;
+  }
+  .brand span{color:var(--accent)}
+  .topbar-right{display:flex;gap:24px;color:var(--muted)}
+  .topbar-right .live{color:var(--accent-2)}
+  .topbar-right .live::before{
+    content:"";
+    display:inline-block;
+    width:7px;height:7px;border-radius:50%;
+    background:var(--accent-2);
+    margin-right:8px;
+    transform:translateY(-1px);
+    animation:pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;transform:translateY(-1px) scale(1)}
+    50%{opacity:.4;transform:translateY(-1px) scale(.85)}
+  }
+
+  /* ── HERO ──────────────────────────────── */
+  .hero{
+    padding:88px 0 64px;
+    position:relative;
+  }
+  .meta-row{
+    display:flex;
+    gap:32px;
+    flex-wrap:wrap;
+    margin-bottom:40px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .meta-row span strong{color:var(--ink);font-weight:500}
+
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-weight:300;
+    font-size:clamp(56px, 11vw, 156px);
+    line-height:.92;
+    letter-spacing:-.04em;
+    margin-bottom:32px;
+    font-variation-settings:"opsz" 144, "SOFT" 30;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--accent);
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .hero h1 .slash{
+    color:var(--line);
+    font-weight:200;
+    margin:0 .05em;
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:56px;
+    align-items:end;
+    margin-top:48px;
+  }
+  .hero-lede{
+    font-family:'Fraunces', serif;
+    font-size:clamp(20px, 2.2vw, 26px);
+    line-height:1.4;
+    font-weight:400;
+    color:var(--ink-soft);
+    max-width:640px;
+    font-variation-settings:"opsz" 60;
+  }
+  .hero-lede em{
+    color:var(--accent);
+    font-style:italic;
+  }
+
+  .hero-side{
+    border-left:1px solid var(--line);
+    padding-left:24px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .hero-side .label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:12px;
+    display:block;
+  }
+  .hero-side ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+  .hero-side li::before{
+    content:"→ ";
+    color:var(--accent);
+    font-weight:600;
+  }
+
+  .cta-row{
+    display:flex;
+    gap:16px;
+    margin-top:56px;
+    flex-wrap:wrap;
+    align-items:center;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:18px 32px;
+    background:var(--ink);
+    color:var(--paper);
+    text-decoration:none;
+    font-family:'Manrope', sans-serif;
+    font-weight:500;
+    font-size:15px;
+    letter-spacing:.01em;
+    border:1px solid var(--ink);
+    transition:all .25s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .btn::after{
+    content:"↗";
+    transition:transform .3s ease;
+  }
+  .btn:hover{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:var(--paper);
+  }
+  .btn:hover::after{transform:translate(3px,-3px)}
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+  }
+  .btn-ghost:hover{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+  }
+
+  /* corner crosshairs decoration */
+  .crosshair{
+    position:absolute;
+    width:14px;height:14px;
+    color:var(--line);
+  }
+  .crosshair::before,.crosshair::after{
+    content:"";
+    position:absolute;
+    background:currentColor;
+  }
+  .crosshair::before{top:50%;left:0;right:0;height:1px;transform:translateY(-50%)}
+  .crosshair::after{left:50%;top:0;bottom:0;width:1px;transform:translateX(-50%)}
+
+  /* ── SECTION SHELL ─────────────────────── */
+  section{padding:96px 0;border-top:1px solid var(--line);position:relative}
+  .sec-head{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:32px;
+    margin-bottom:64px;
+    align-items:start;
+  }
+  .sec-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    letter-spacing:.06em;
+    color:var(--muted);
+    padding-top:10px;
+    border-top:1px solid var(--ink);
+    width:fit-content;
+  }
+  .sec-title{
+    font-family:'Fraunces', serif;
+    font-size:clamp(36px, 5vw, 64px);
+    font-weight:400;
+    line-height:1.02;
+    letter-spacing:-.02em;
+    font-variation-settings:"opsz" 100, "SOFT" 50;
+  }
+  .sec-title em{
+    font-style:italic;
+    color:var(--accent);
+    font-weight:400;
+  }
+  .sec-kicker{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent-2);
+    margin-bottom:16px;
+  }
+
+  /* ── ROLE OVERVIEW ─────────────────────── */
+  .role-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .role-card{
+    background:var(--paper);
+    padding:36px 32px;
+    transition:background .3s ease;
+  }
+  .role-card:hover{background:var(--paper-2)}
+  .role-card .num{
+    font-family:'Fraunces', serif;
+    font-size:48px;
+    font-weight:300;
+    color:var(--accent);
+    font-style:italic;
+    line-height:1;
+    margin-bottom:20px;
+    display:block;
+  }
+  .role-card h3{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-weight:500;
+    margin-bottom:12px;
+    letter-spacing:-.01em;
+  }
+  .role-card p{
+    color:var(--ink-soft);
+    font-size:15px;
+    line-height:1.55;
+  }
+
+  /* ── DUTIES ────────────────────────────── */
+  .duty-block{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:32px;
+    padding:36px 0;
+    border-top:1px dashed var(--line);
+  }
+  .duty-block:first-of-type{border-top:1px solid var(--ink)}
+  .duty-block:last-of-type{border-bottom:1px solid var(--ink)}
+  .duty-tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:.04em;
+    color:var(--muted);
+    padding-top:6px;
+  }
+  .duty-tag strong{
+    display:block;
+    color:var(--accent);
+    font-size:14px;
+    margin-bottom:4px;
+    font-weight:500;
+  }
+  .duty-content h3{
+    font-family:'Fraunces', serif;
+    font-size:28px;
+    font-weight:400;
+    margin-bottom:20px;
+    letter-spacing:-.015em;
+    font-variation-settings:"opsz" 60;
+  }
+  .duty-content ul{
+    list-style:none;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px 32px;
+  }
+  .duty-content li{
+    padding-left:24px;
+    position:relative;
+    color:var(--ink-soft);
+    font-size:15px;
+    line-height:1.5;
+  }
+  .duty-content li::before{
+    content:"";
+    position:absolute;
+    left:0;top:.65em;
+    width:14px;height:1px;
+    background:var(--accent);
+  }
+
+  /* ── REQUIREMENTS ──────────────────────── */
+  .req-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+  }
+  .req-col{
+    background:var(--paper-2);
+    padding:40px;
+    border:1px solid var(--line);
+    position:relative;
+  }
+  .req-col.must{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+  }
+  .req-col.must .req-label{color:var(--highlight)}
+  .req-col.must li{color:var(--paper)}
+  .req-col.must li::before{background:var(--highlight)}
+  .req-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--accent-2);
+    margin-bottom:8px;
+    display:block;
+  }
+  .req-col h3{
+    font-family:'Fraunces', serif;
+    font-size:32px;
+    font-weight:400;
+    margin-bottom:24px;
+    letter-spacing:-.02em;
+  }
+  .req-col h3 em{font-style:italic;color:var(--accent)}
+  .req-col.must h3 em{color:var(--highlight)}
+  .req-col ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .req-col li{
+    padding-left:24px;
+    position:relative;
+    font-size:15px;
+    line-height:1.5;
+    color:var(--ink-soft);
+  }
+  .req-col li::before{
+    content:"";
+    position:absolute;
+    left:0;top:.55em;
+    width:12px;height:12px;
+    border:1px solid var(--accent);
+    border-radius:50%;
+  }
+
+  /* ── SKILLS / TRAITS ───────────────────── */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .skill-card{
+    padding:32px 28px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    transition:transform .3s ease, background .3s ease;
+  }
+  .skill-card:hover{
+    transform:translateY(-4px);
+    background:var(--paper-2);
+  }
+  .skill-card .icon{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:36px;
+    color:var(--accent);
+    line-height:1;
+    margin-bottom:16px;
+    display:block;
+  }
+  .skill-card h4{
+    font-family:'Fraunces', serif;
+    font-size:20px;
+    font-weight:500;
+    margin-bottom:8px;
+  }
+  .skill-card p{
+    font-size:14px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+
+  /* ── BENEFITS ──────────────────────────── */
+  .benefits{
+    background:var(--accent-2);
+    color:var(--paper);
+    margin:0 -100vw;
+    padding:96px 100vw;
+    border-top:1px solid var(--accent-2);
+    border-bottom:1px solid var(--accent-2);
+  }
+  .benefits .sec-num{color:var(--highlight);border-color:var(--highlight)}
+  .benefits .sec-title{color:var(--paper)}
+  .benefits .sec-title em{color:var(--highlight)}
+  .benefits .sec-kicker{color:var(--highlight)}
+
+  .benefits-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:rgba(232,217,181,.25);
+    border:1px solid rgba(232,217,181,.25);
+  }
+  .benefit{
+    background:var(--accent-2);
+    padding:36px 28px;
+    transition:background .3s ease;
+  }
+  .benefit:hover{background:#1a3a2c}
+  .benefit .num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    color:var(--highlight);
+    margin-bottom:16px;
+    display:block;
+  }
+  .benefit h4{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-weight:500;
+    line-height:1.2;
+    margin-bottom:12px;
+    letter-spacing:-.01em;
+  }
+  .benefit p{
+    font-size:14px;
+    line-height:1.55;
+    color:rgba(242,235,221,.78);
+  }
+
+  /* ── LOGISTICS ─────────────────────────── */
+  .logistics{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+    padding:48px 0;
+  }
+  .logistic{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .logistic .label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .logistic .value{
+    font-family:'Fraunces', serif;
+    font-size:28px;
+    font-weight:400;
+    letter-spacing:-.01em;
+    line-height:1.1;
+  }
+  .logistic .value em{font-style:italic;color:var(--accent)}
+
+  /* ── APPLY CTA ─────────────────────────── */
+  .apply{
+    text-align:center;
+    padding:120px 0;
+    border-top:1px solid var(--line);
+  }
+  .apply .sec-kicker{color:var(--accent-2);margin-bottom:24px}
+  .apply h2{
+    font-family:'Fraunces', serif;
+    font-size:clamp(48px, 8vw, 110px);
+    font-weight:300;
+    line-height:.95;
+    letter-spacing:-.04em;
+    margin-bottom:32px;
+    font-variation-settings:"opsz" 144, "SOFT" 50;
+  }
+  .apply h2 em{
+    font-style:italic;
+    color:var(--accent);
+    font-weight:400;
+    font-variation-settings:"opsz" 144, "SOFT" 100;
+  }
+  .apply p{
+    max-width:560px;
+    margin:0 auto 40px;
+    font-size:17px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .apply .btn{
+    padding:22px 44px;
+    font-size:16px;
+  }
+
+  /* ── FOOTER ────────────────────────────── */
+  footer{
+    border-top:1px solid var(--line);
+    padding:32px 0;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--muted);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+
+  /* ── ENTRANCE ANIMATIONS ───────────────── */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    animation:reveal .9s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  .reveal.d1{animation-delay:.05s}
+  .reveal.d2{animation-delay:.18s}
+  .reveal.d3{animation-delay:.32s}
+  .reveal.d4{animation-delay:.46s}
+  @keyframes reveal{to{opacity:1;transform:translateY(0)}}
+
+  /* ── RESPONSIVE ────────────────────────── */
+  @media (max-width:900px){
+    .wrap{padding:0 24px}
+    .hero{padding:64px 0 48px}
+    .hero-grid{grid-template-columns:1fr;gap:32px}
+    .hero-side{border-left:none;border-top:1px solid var(--line);padding:24px 0 0}
+    .sec-head{grid-template-columns:1fr;gap:16px;margin-bottom:48px}
+    .sec-num{padding-top:8px}
+    .role-grid{grid-template-columns:1fr}
+    .duty-block{grid-template-columns:1fr;gap:16px}
+    .duty-content ul{grid-template-columns:1fr}
+    .req-grid{grid-template-columns:1fr;gap:24px}
+    .skills-grid{grid-template-columns:1fr}
+    .benefits-grid{grid-template-columns:1fr 1fr}
+    .logistics{grid-template-columns:1fr;gap:24px;padding:32px 0}
+    section{padding:64px 0}
+    .benefits{padding:64px 100vw}
+    .apply{padding:80px 0}
+  }
+  @media (max-width:560px){
+    .benefits-grid{grid-template-columns:1fr}
+    .topbar-right{display:none}
+    .meta-row{gap:16px}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- TOP BAR -->
+  <header class="topbar reveal">
+    <div class="brand">krik<span>.</span>home</div>
+    <div class="topbar-right">
+      <span>Hà Nội · 2026</span>
+      <span class="live">Đang tuyển</span>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;padding-top:88px">
+    <div class="crosshair" style="top:60px;right:8px"></div>
+
+    <div class="meta-row reveal d1">
+      <span><strong>Vị trí</strong> &nbsp; Operations Intern</span>
+      <span><strong>Phòng ban</strong> &nbsp; Vận hành / Hệ thống</span>
+      <span><strong>Mã JD</strong> &nbsp; KH-OPS-001</span>
+      <span><strong>Cập nhật</strong> &nbsp; 04 / 2026</span>
+    </div>
+
+    <h1 class="reveal d2">
+      Operations<br>
+      <em>Intern</em><span class="slash">/</span>mini&nbsp;BA
+    </h1>
+
+    <div class="hero-grid">
+      <p class="hero-lede reveal d3">
+        Bọn mình đang xây hệ thống vận hành cho KRIK Home — từ KPI, chấm công, CRM tới dashboard.
+        Cần một người <em>thích logic, thích data</em>, đủ cẩn thận để không làm toang dashboard,
+        và đủ tò mò để biến yêu cầu của user thành flow chạy được.
+      </p>
+      <aside class="hero-side reveal d4">
+        <span class="label">Tóm tắt vai trò</span>
+        <ul>
+          <li>Triển khai hệ thống nội bộ</li>
+          <li>Hỗ trợ user, vận hành sau go-live</li>
+          <li>Ghi nhận feedback, đề xuất cải tiến</li>
+          <li>Điều phối task, theo dõi tiến độ</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="cta-row reveal d4">
+      <a href="#apply" class="btn">Ứng tuyển ngay</a>
+      <a href="#duties" class="btn btn-ghost">Xem chi tiết công việc</a>
+    </div>
+  </section>
+
+  <!-- ROLE OVERVIEW -->
+  <section id="role">
+    <div class="sec-head">
+      <div class="sec-num">01 / 06</div>
+      <div>
+        <div class="sec-kicker">Mô tả vai trò</div>
+        <h2 class="sec-title">Cánh tay phải <em>của người</em><br>xây hệ thống.</h2>
+      </div>
+    </div>
+
+    <div class="role-grid">
+      <div class="role-card">
+        <span class="num">i.</span>
+        <h3>Triển khai hệ thống nội bộ</h3>
+        <p>KPI, chấm công, CRM, dashboard — bạn là người đưa chúng từ file Sheet rời rạc lên một hệ thống chạy được.</p>
+      </div>
+      <div class="role-card">
+        <span class="num">ii.</span>
+        <h3>Phiên dịch giữa người và máy</h3>
+        <p>Làm việc trực tiếp với HR, Sales, Store để thu thập và chuẩn hoá yêu cầu — biến "ngôn ngữ user" thành logic hệ thống.</p>
+      </div>
+      <div class="role-card">
+        <span class="num">iii.</span>
+        <h3>Vận hành sau go-live</h3>
+        <p>Fix data, support user, training cơ bản. Hệ thống chỉ thật sự sống khi có người chăm sóc nó hằng ngày.</p>
+      </div>
+      <div class="role-card">
+        <span class="num">iv.</span>
+        <h3>Điều phối &amp; theo dõi tiến độ</h3>
+        <p>Đóng vai trò "trợ lý dự án" — theo dõi task, nhắc deadline, đảm bảo không có gì rơi qua khe.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DUTIES -->
+  <section id="duties">
+    <div class="sec-head">
+      <div class="sec-num">02 / 06</div>
+      <div>
+        <div class="sec-kicker">Công việc chính</div>
+        <h2 class="sec-title">Bốn nhóm việc <em>bạn sẽ chạm tay</em><br>mỗi tuần.</h2>
+      </div>
+    </div>
+
+    <div class="duty-block">
+      <div class="duty-tag"><strong>(1)</strong> Triển khai</div>
+      <div class="duty-content">
+        <h3>Dựng hệ thống từ con số 0 → chạy được.</h3>
+        <ul>
+          <li>Setup dữ liệu ban đầu trên Google Sheet hoặc hệ thống nội bộ</li>
+          <li>Mapping data — store, nhân sự, sản phẩm, cây phân quyền</li>
+          <li>Test flow theo checklist UAT cơ bản</li>
+          <li>Phối hợp với dev / mentor để chốt logic trước khi go-live</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="duty-block">
+      <div class="duty-tag"><strong>(2)</strong> Vận hành</div>
+      <div class="duty-content">
+        <h3>Là người user gọi đầu tiên khi có vấn đề.</h3>
+        <ul>
+          <li>Hỗ trợ user khi gặp lỗi đăng nhập, sai data, sai quyền</li>
+          <li>Kiểm tra &amp; đảm bảo data đúng logic — KPI, chấm công…</li>
+          <li>Theo dõi issue và escalate đúng nơi khi cần</li>
+          <li>Giữ system "sạch": không rác, không lệch, không mâu thuẫn</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="duty-block">
+      <div class="duty-tag"><strong>(3)</strong> Cải tiến</div>
+      <div class="duty-content">
+        <h3>Quan sát, ghi nhận, đề xuất.</h3>
+        <ul>
+          <li>Ghi nhận feedback từ người dùng cuối</li>
+          <li>Đề xuất cải tiến quy trình hoặc tool</li>
+          <li>Hỗ trợ làm tài liệu hướng dẫn — SOP, guideline</li>
+          <li>Biến những "lần thứ ba người dùng hỏi" thành một bài hướng dẫn</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="duty-block">
+      <div class="duty-tag"><strong>(4)</strong> Điều phối</div>
+      <div class="duty-content">
+        <h3>Giữ cho mọi thứ không bị rơi.</h3>
+        <ul>
+          <li>Theo dõi task qua Notion / Sheet / Jira</li>
+          <li>Nhắc deadline các bên liên quan một cách lịch sự &amp; hiệu quả</li>
+          <li>Report tiến độ ngắn gọn theo tuần</li>
+          <li>Đảm bảo các bên đang nhìn cùng một bảng tính</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUIREMENTS -->
+  <section id="reqs">
+    <div class="sec-head">
+      <div class="sec-num">03 / 06</div>
+      <div>
+        <div class="sec-kicker">Yêu cầu</div>
+        <h2 class="sec-title">Người chúng tôi <em>đang tìm.</em></h2>
+      </div>
+    </div>
+
+    <div class="req-grid">
+      <div class="req-col must">
+        <span class="req-label">[ Must-have ]</span>
+        <h3>Bắt buộc <em>phải có.</em></h3>
+        <ul>
+          <li>Sinh viên năm 3–4 hoặc mới tốt nghiệp ngành IT, MIS, Hệ thống thông tin, Kinh tế…</li>
+          <li>Tư duy logic tốt, thích làm việc với hệ thống &amp; dữ liệu</li>
+          <li>Sử dụng tốt Google Sheets / Excel — hàm cơ bản trở lên</li>
+          <li>Cẩn thận, có trách nhiệm <span style="color:var(--highlight);opacity:.7;font-style:italic">— data sai = toang dashboard 😅</span></li>
+        </ul>
+      </div>
+
+      <div class="req-col">
+        <span class="req-label">[ Nice-to-have ]</span>
+        <h3>Có thì <em>tuyệt vời.</em></h3>
+        <ul>
+          <li>Biết SQL, Power BI hoặc Looker Studio</li>
+          <li>Có hiểu biết về vận hành bán lẻ &amp; KPI</li>
+          <li>Đã từng làm BA / Ops / Support là một lợi thế lớn</li>
+          <li>Quen với Notion, Jira, hoặc các công cụ quản lý dự án</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-head">
+      <div class="sec-num">04 / 06</div>
+      <div>
+        <div class="sec-kicker">Kỹ năng &amp; tư duy</div>
+        <h2 class="sec-title">Ba thứ <em>quan trọng hơn</em><br>mọi bằng cấp.</h2>
+      </div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="icon">①</span>
+        <h4>Giao tiếp rõ ràng</h4>
+        <p>Dịch được "ngôn ngữ user" thành "logic hệ thống" — và ngược lại. Diễn giải đơn giản, không thuật ngữ thừa.</p>
+      </div>
+      <div class="skill-card">
+        <span class="icon">②</span>
+        <h4>Problem-solving</h4>
+        <p>Không panic khi user báo lỗi. Tìm hiểu root cause trước, đưa giải pháp sau. Bình tĩnh là siêu năng lực.</p>
+      </div>
+      <div class="skill-card">
+        <span class="icon">③</span>
+        <h4>Tự quản công việc</h4>
+        <p>Multi-task nhẹ, biết ưu tiên đúng việc. Không cần ai nhắc bạn từng bước nhỏ.</p>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /wrap -->
+
+<!-- BENEFITS (full bleed) -->
+<section class="benefits">
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="sec-head">
+      <div class="sec-num">05 / 06</div>
+      <div>
+        <div class="sec-kicker">Quyền lợi</div>
+        <h2 class="sec-title">Cái <em>bạn nhận lại</em><br>không phải lương vặt.</h2>
+      </div>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="benefit">
+        <span class="num">[ A.01 ]</span>
+        <h4>Triển khai end-to-end</h4>
+        <p>Học triển khai hệ thống nội bộ thật, từ requirement đến go-live đến vận hành.</p>
+      </div>
+      <div class="benefit">
+        <span class="num">[ A.02 ]</span>
+        <h4>Data &amp; dashboard thực chiến</h4>
+        <p>Làm việc trực tiếp với KPI, vận hành, dashboard — không dừng ở demo trên slide.</p>
+      </div>
+      <div class="benefit">
+        <span class="num">[ A.03 ]</span>
+        <h4>Mentor sát</h4>
+        <p>Làm việc trực tiếp với người xây hệ thống. Hỏi gì cũng được trả lời.</p>
+      </div>
+      <div class="benefit">
+        <span class="num">[ A.04 ]</span>
+        <h4>Cơ hội lên chính thức</h4>
+        <p>Track Ops, BA hoặc Data — tuỳ vào hướng bạn thấy hợp nhất sau 3–6 tháng.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <!-- LOGISTICS -->
+  <section id="logistics">
+    <div class="sec-head">
+      <div class="sec-num">06 / 06</div>
+      <div>
+        <div class="sec-kicker">Thời gian &amp; địa điểm</div>
+        <h2 class="sec-title">Khi nào, ở đâu, <em>thế nào.</em></h2>
+      </div>
+    </div>
+
+    <div class="logistics">
+      <div class="logistic">
+        <span class="label">Hình thức</span>
+        <span class="value">Part-time <em>hoặc</em> Full-time</span>
+      </div>
+      <div class="logistic">
+        <span class="label">Địa điểm</span>
+        <span class="value">Văn phòng <em>+</em> remote khi cần</span>
+      </div>
+      <div class="logistic">
+        <span class="label">Thời lượng</span>
+        <span class="value">Linh hoạt, <em>tối thiểu 3 tháng</em></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLY -->
+  <section id="apply" class="apply">
+    <div class="sec-kicker">[ Cách ứng tuyển ]</div>
+    <h2>Sẵn sàng <em>build cùng</em><br>chúng tôi?</h2>
+    <p>
+      Gửi CV (kèm portfolio / Sheet sample / project bất kỳ bạn muốn khoe) qua email bên dưới,
+      tiêu đề: <strong>[KH-OPS-001] Họ tên — Operations Intern</strong>.
+    </p>
+    <a href="mailto:HR@krik.vn?subject=%5BKH-OPS-001%5D%20Operations%20Intern" class="btn">HR@krik.vn</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© KRIK Home · 2026</span>
+    <span>Job ID — KH-OPS-001 / v1.0</span>
+    <span><a href="mailto:HR@krik.vn" style="color:inherit;text-decoration:none">Liên hệ tuyển dụng ↗</a></span>
+  </footer>
+
+</div>
+
+</body>
+</html>
